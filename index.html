@@ -721,6 +721,15 @@
         font-size: 19px;
       }
 
+      .promo-card-desc {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--line);
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        line-height: 1.5;
+      }
+
       .prod-table {
         width: 100%;
         border-collapse: collapse;
@@ -1564,6 +1573,7 @@
           <span class="p-price-old">${fmt(p.p)}</span>
           <span class="p-price-promo">${fmt(p.pp)}</span>
         </div>
+        ${p.pd ? `<div class="promo-card-desc">${p.pd}</div>` : ''}
       </div>`;
     }
 
@@ -1707,7 +1717,10 @@
             }
           }
 
-          return { n, m, p, c: cat, pp, pv };
+          // Coluna opcional "Descrição Promo" (G)
+          const pd = cells[6] && cells[6].v ? String(cells[6].v).trim() : undefined;
+
+          return { n, m, p, c: cat, pp, pv, pd };
         }).filter(p => p.n && p.c && !isNaN(p.p));
 
         if (fresh.length > 0) {
