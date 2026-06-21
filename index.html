@@ -644,6 +644,83 @@
         color: var(--taupe);
       }
 
+      /* ---------- promo section ---------- */
+      .promo-section {
+        padding: 64px 32px 8px;
+      }
+
+      .promo-section-title {
+        border-bottom-color: var(--gold-deep);
+      }
+
+      .promo-section-title h3 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .promo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 16px;
+      }
+
+      .promo-card {
+        position: relative;
+        background: #fff;
+        border-radius: 6px;
+        padding: 20px 18px;
+        box-shadow: 0 1px 12px rgba(112, 18, 55, 0.08), 0 0 0 1px rgba(112, 18, 55, 0.1);
+        border-top: 3px solid var(--gold);
+        transition: transform .2s, box-shadow .2s;
+      }
+
+      .promo-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(112, 18, 55, 0.14), 0 0 0 1px rgba(112, 18, 55, 0.1);
+      }
+
+      .promo-badge {
+        display: inline-block;
+        background: var(--wine);
+        color: #fff;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+
+      .promo-card-name {
+        font-weight: 600;
+        font-size: 15px;
+        color: var(--ink);
+        margin-bottom: 4px;
+      }
+
+      .promo-card-brand {
+        font-style: italic;
+        font-size: 13px;
+        color: var(--taupe);
+        margin-bottom: 14px;
+      }
+
+      .promo-card-prices {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+
+      .promo-card-prices .p-price-old {
+        font-size: 13px;
+      }
+
+      .promo-card-prices .p-price-promo {
+        font-size: 19px;
+      }
+
       .prod-table {
         width: 100%;
         border-collapse: collapse;
@@ -680,6 +757,10 @@
         font-weight: 500;
       }
 
+      .p-name .p-brand-mobile {
+        display: none;
+      }
+
       .p-brand {
         color: var(--taupe);
         font-style: italic;
@@ -694,6 +775,21 @@
         width: 110px;
         white-space: nowrap;
         font-variant-numeric: tabular-nums;
+      }
+
+      .p-price-old {
+        display: block;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--taupe);
+        text-decoration: line-through;
+        text-decoration-color: var(--taupe);
+      }
+
+      .p-price-promo {
+        display: block;
+        color: var(--wine);
+        font-weight: 700;
       }
 
       .no-results {
@@ -1068,6 +1164,27 @@
           display: none;
         }
 
+        .p-name .p-brand-mobile {
+          display: block;
+          color: var(--taupe);
+          font-style: italic;
+          font-weight: 400;
+          font-size: 12.5px;
+          margin-top: 2px;
+        }
+
+        .promo-section {
+          padding: 44px 20px 4px;
+        }
+
+        .promo-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .prod-table td {
+          padding: 13px 14px;
+        }
+
         .cta-left {
           padding: 40px 28px;
         }
@@ -1245,6 +1362,8 @@
       </div>
     </section>
 
+    <div id="promo-section-wrap" style="display:none;"></div>
+
     <section class="catalog" id="catalogo">
       <div class="wrap">
         <div class="section-head reveal">
@@ -1413,6 +1532,41 @@
       return 'R$\u00A0' + v.toFixed(2).replace('.', ',');
     }
 
+    // Uma promoção é válida se houver preço promo numérico, menor que o preço normal,
+    // e (se houver data de validade) a data ainda não tiver passado.
+    function isPromoActive(p) {
+      if (typeof p.pp !== 'number' || isNaN(p.pp) || p.pp <= 0 || p.pp >= p.p) return false;
+      if (p.pv) {
+        const until = new Date(p.pv + 'T23:59:59');
+        if (!isNaN(until.getTime()) && until.getTime() < Date.now()) return false;
+      }
+      return true;
+    }
+
+    function renderRow(p) {
+      const promo = isPromoActive(p);
+      const brandText = p.m || '\u2014';
+      const nameCell = `<td class="p-name">${p.n}${p.m ? `<span class="p-brand-mobile">${brandText}</span>` : ''}</td>`;
+      const brandCell = `<td class="p-brand">${brandText}</td>`;
+      const priceCell = promo
+        ? `<td class="p-price"><span class="p-price-old">${fmt(p.p)}</span><span class="p-price-promo">${fmt(p.pp)}</span></td>`
+        : `<td class="p-price">${fmt(p.p)}</td>`;
+      return `<tr>${nameCell}${brandCell}${priceCell}</tr>`;
+    }
+
+    function renderPromoCard(p) {
+      const brandText = p.m || '\u2014';
+      return `<div class="promo-card">
+        <span class="promo-badge">Promoção</span>
+        <div class="promo-card-name">${p.n}</div>
+        <div class="promo-card-brand">${brandText}</div>
+        <div class="promo-card-prices">
+          <span class="p-price-old">${fmt(p.p)}</span>
+          <span class="p-price-promo">${fmt(p.pp)}</span>
+        </div>
+      </div>`;
+    }
+
     function renderTabs() {
       let html = `<button class="tab active" data-cat="all">Todas as categorias <span style="opacity:.6">(${products.length})</span></button>`;
       categoryOrder().forEach(c => {
@@ -1464,7 +1618,7 @@
         <div class="cat-section-title"><h3>${cat}</h3><span class="count">${counts[cat]} itens</span></div>
         <table class="prod-table"><tbody>`;
           items.forEach(p => {
-            html += `<tr><td class="p-name">${p.n}</td><td class="p-brand">${p.m || '\u2014'}</td><td class="p-price">${fmt(p.p)}</td></tr>`;
+            html += renderRow(p);
           });
           html += `</tbody></table></div>`;
         });
@@ -1472,7 +1626,7 @@
       } else {
         let html = `<div class="cat-section reveal in"><table class="prod-table"><tbody>`;
         shown.forEach(p => {
-          html += `<tr><td class="p-name">${p.n}</td><td class="p-brand">${p.m || '\u2014'}</td><td class="p-price">${fmt(p.p)}</td></tr>`;
+          html += renderRow(p);
         });
         html += `</tbody></table></div>`;
         resultsEl.innerHTML = html;
@@ -1481,11 +1635,35 @@
       loadMoreWrap.style.display = hasMore ? 'block' : 'none';
     }
 
+    function renderPromoSection() {
+      const wrap = document.getElementById('promo-section-wrap');
+      if (!wrap) return;
+      const promoItems = products.filter(isPromoActive);
+      if (promoItems.length === 0) {
+        wrap.innerHTML = '';
+        wrap.style.display = 'none';
+        return;
+      }
+      wrap.style.display = 'block';
+      wrap.innerHTML = `<section class="promo-section reveal in">
+        <div class="wrap">
+          <div class="cat-section-title promo-section-title">
+            <h3>Em promoção</h3>
+            <span class="count">${promoItems.length} ${promoItems.length === 1 ? 'item' : 'itens'}</span>
+          </div>
+          <div class="promo-grid">
+            ${promoItems.map(renderPromoCard).join('')}
+          </div>
+        </div>
+      </section>`;
+    }
+
     document.getElementById('search').addEventListener('input', () => { visibleLimit = 60; render(); });
     document.getElementById('load-more').addEventListener('click', () => { visibleLimit += 60; render(); });
 
     renderTabs();
     render();
+    renderPromoSection();
 
     // Busca o catálogo atualizado na planilha do Google Sheets.
     // Se der qualquer problema (planilha não configurada, sem internet,
@@ -1510,7 +1688,26 @@
           const pRaw = cells[2] && cells[2].v;
           const cat = cells[3] && cells[3].v;
           const p = typeof pRaw === 'number' ? pRaw : parseFloat(pRaw);
-          return { n, m, p, c: cat };
+
+          // Colunas opcionais de promoção: "Preço Promo" (E) e "Promoção até" (F)
+          const ppRaw = cells[4] && cells[4].v;
+          let pp = typeof ppRaw === 'number' ? ppRaw : (ppRaw ? parseFloat(ppRaw) : NaN);
+          if (isNaN(pp)) pp = undefined;
+
+          let pv;
+          const pvRaw = cells[5] && cells[5].v;
+          if (pvRaw) {
+            // O Google Sheets gviz devolve datas como "Date(YYYY,M,D)" (mês 0-indexado)
+            const dateMatch = typeof pvRaw === 'string' && pvRaw.match(/^Date\((\d+),(\d+),(\d+)/);
+            if (dateMatch) {
+              const yyyy = dateMatch[1], mm = String(Number(dateMatch[2]) + 1).padStart(2, '0'), dd = dateMatch[3].padStart(2, '0');
+              pv = `${yyyy}-${mm}-${dd}`;
+            } else if (typeof pvRaw === 'string') {
+              pv = pvRaw;
+            }
+          }
+
+          return { n, m, p, c: cat, pp, pv };
         }).filter(p => p.n && p.c && !isNaN(p.p));
 
         if (fresh.length > 0) {
@@ -1519,6 +1716,7 @@
           recalcCounts();
           renderTabs();
           render();
+          renderPromoSection();
         }
       } catch (err) {
         console.warn('Catálogo: usando dados salvos no arquivo —', err.message);
