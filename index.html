@@ -1150,7 +1150,22 @@
         section {
           padding: 76px 0;
         }
-      }
+        .footer-grid{
+        grid-template-columns:1fr;
+        gap:40px;
+        text-align:center;
+    }
+
+    .footer-brand{
+        justify-content:center;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        text-align:center;
+        gap:16px;
+    }
+  }
 
       @media (max-width:600px) {
         .pillars {
@@ -1205,6 +1220,9 @@
 
         .cta-right {
           padding: 40px 28px;
+        }
+        footer{
+        padding:48px 24px 24px;
         }
       }
   </style>
