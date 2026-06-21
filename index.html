@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nakaty Prime — Curadoria premium para podologia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --wine: #701237;
+      --wine-deep: #4d0c26;
+      --gold: #e1b26c;
+      --gold-deep: #c4924a;
+      --cream: #fbf7f2;
+      --cream-deep: #f3ece2;
+      --blush: #f3e2e8;
+      --ink: #2b1118;
+      --ink-soft: #5a4047;
+      --taupe: #8a8178;
+      --line: rgba(112, 18, 55, 0.14);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--wine-deep);
+    }
+
+    /* ---------- lotus motif ---------- */
+    .lotus {
+      display: block;
+    }
+
+    .lotus path {
+      vector-effect: non-scaling-stroke;
+    }
+
+    /* ---------- header ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(251, 247, 242, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      transition: background .3s;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 32px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 26px;
+      letter-spacing: 0.03em;
+      color: var(--wine);
+    }
+
+    .brand svg {
+      width: 26px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .navlinks a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      position: relative;
+      padding: 4px 0;
+      transition: color .2s;
+    }
+
+    .navlinks a:hover {
+      color: var(--wine);
+    }
+
+    .navlinks a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 1px;
+      background: var(--gold-deep);
+      transition: width .25s;
+    }
+
+    .navlinks a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--wine);
+      color: #fff !important;
+      padding: 11px 24px;
+      border-radius: 2px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: background .2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--wine-deep);
+    }
+
+    .burger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--wine);
+    }
+
+    /* ---------- hero ---------- */
+    .hero {
+      position: relative;
+      padding: 200px 32px 130px;
+      overflow: hidden;
+      background: var(--wine-deep);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-carousel {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(135deg,
+          rgba(22, 10, 14, 0.68) 0%,
+          rgba(35, 14, 20, 0.75) 50%,
+          rgba(8, 8, 10, 0.72) 100%);
+    }
+
+      .hero-dots {
+        display: flex;
+        gap: 10px;
+        margin-top: 48px;
+      }
+
+      .hero-dot {
+        width: 28px;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.35);
+        border-radius: 2px;
+        cursor: pointer;
+        transition: background .3s, width .3s;
+      }
+
+      .hero-dot.active {
+        background: var(--gold);
+        width: 48px;
+      }
+
+      .hero-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+        width: 100%;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12.5px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 28px;
+      }
+
+      .eyebrow::before {
+        content: '';
+        width: 28px;
+        height: 1px;
+        background: var(--gold-deep);
+      }
+
+      h1.hero-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 500;
+        font-size: clamp(44px, 6vw, 82px);
+        line-height: 1.05;
+        color: #fff;
+        max-width: 780px;
+        letter-spacing: -0.01em;
+        text-shadow: 0 2px 24px rgba(43, 17, 24, 0.4);
+      }
+
+      h1.hero-title em {
+        font-style: italic;
+        color: var(--gold-deep);
+        font-weight: 500;
+      }
+
+      .hero-sub {
+        margin-top: 28px;
+        font-size: 19px;
+        color: rgba(255, 255, 255, 0.88);
+        max-width: 540px;
+        font-weight: 400;
+        line-height: 1.75;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 18px;
+        margin-top: 46px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--wine);
+        color: #fff;
+        padding: 16px 32px;
+        font-size: 14.5px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        border-radius: 2px;
+        transition: background .2s, transform .2s;
+      }
+
+      .btn-primary:hover {
+        background: var(--wine-deep);
+        transform: translateY(-1px);
+      }
+
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--wine);
+        font-size: 14.5px;
+        font-weight: 600;
+        padding: 16px 6px;
+        border-bottom: 1px solid var(--gold-deep);
+        letter-spacing: 0.02em;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 56px;
+        margin-top: 64px;
+        flex-wrap: wrap;
+        padding-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .stat-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 38px;
+        color: var(--wine);
+        font-weight: 600;
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--taupe);
+        margin-top: 4px;
+        letter-spacing: 0.02em;
+      }
+
+      /* ---------- divider ---------- */
+      .divider-lotus {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        padding: 8px 0;
+      }
+
+      .divider-lotus .line {
+        height: 1px;
+        width: 80px;
+        background: var(--line);
+      }
+
+      .divider-lotus svg {
+        width: 22px;
+        height: 22px;
+        color: var(--gold-deep);
+      }
+
+      /* ---------- section shared ---------- */
+      section {
+        padding: 108px 0;
+      }
+
+      .section-head {
+        max-width: 640px;
+        margin-bottom: 64px;
+      }
+
+      .section-eyebrow {
+        font-size: 13.5px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold-deep);
+        margin-bottom: 16px;
+      }
+
+      .section-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 500;
+        font-size: clamp(30px, 4vw, 44px);
+        color: var(--wine-deep);
+        line-height: 1.15;
+      }
+
+      .section-title em {
+        font-style: italic;
+        color: var(--gold-deep);
+      }
+
+      .section-desc {
+        margin-top: 18px;
+        font-size: 16.5px;
+        color: var(--ink-soft);
+        line-height: 1.75;
+      }
+
+      .center {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* ---------- about ---------- */
+      .about {
+        background: var(--cream);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .about-visual {
+        position: relative;
+        aspect-ratio: 4/5;
+        background: linear-gradient(155deg, var(--wine) 0%, var(--wine-deep) 100%);
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .about-visual::after {
+        content: '';
+        position: absolute;
+        inset: 14px;
+        border: 1px solid rgba(225, 178, 108, 0.35);
+        pointer-events: none;
+      }
+
+      .about-copy p {
+        font-size: 16.5px;
+        color: var(--ink-soft);
+        margin-bottom: 20px;
+        line-height: 1.8;
+      }
+
+      .about-copy .lead {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-size: 24px;
+        color: var(--wine-deep);
+        line-height: 1.5;
+        margin-bottom: 28px;
+      }
+
+      .pillars {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 36px;
+      }
+
+      .pillar {
+        border: 1px solid var(--line);
+        padding: 20px 16px;
+        text-align: center;
+        border-radius: 2px;
+        background: #fff;
+      }
+
+      .pillar-icon {
+        width: 30px;
+        height: 30px;
+        margin: 0 auto 12px;
+        color: var(--wine);
+      }
+
+      .pillar-name {
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--wine-deep);
+        letter-spacing: 0.02em;
+      }
+
+      /* ---------- values strip ---------- */
+      .values {
+        background: var(--wine);
+        color: #fff;
+      }
+
+      .values .wrap {
+        padding: 0 32px;
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .value-card {
+        background: var(--wine);
+        padding: 52px 36px;
+      }
+
+      .value-card .num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 26px;
+        color: var(--gold);
+        letter-spacing: 0.06em;
+        margin-bottom: 20px;
+      }
+
+      .value-card h3 {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 500;
+        font-size: 28px;
+        margin-bottom: 12px;
+        color: #fff;
+      }
+
+      .value-card p {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.82);
+        line-height: 1.75;
+      }
+
+      /* ---------- catalog ---------- */
+      .catalog {
+        background: var(--cream-deep);
+      }
+
+      .cat-controls {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .search-box {
+        position: relative;
+        flex: 1;
+        min-width: 240px;
+        max-width: 380px;
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: 13px 18px 13px 42px;
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        background: #fff;
+        font-size: 14.5px;
+        color: var(--ink);
+        font-family: 'DM Sans', sans-serif;
+      }
+
+      .search-box input:focus {
+        outline: none;
+        border-color: var(--gold-deep);
+      }
+
+      .search-box svg {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 17px;
+        height: 17px;
+        color: var(--taupe);
+      }
+
+      .results-count {
+        font-size: 13.5px;
+        color: var(--taupe);
+        white-space: nowrap;
+      }
+
+      .cat-tabs {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 28px 0 40px;
+      }
+
+      .tab {
+        padding: 9px 18px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink-soft);
+        background: #fff;
+        cursor: pointer;
+        transition: all .2s;
+        letter-spacing: 0.01em;
+      }
+
+      .tab:hover {
+        border-color: var(--gold-deep);
+        color: var(--wine);
+      }
+
+      .tab.active {
+        background: var(--wine);
+        border-color: var(--wine);
+        color: #fff;
+      }
+
+      .cat-section {
+        margin-bottom: 8px;
+      }
+
+      .cat-section-title {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        margin: 56px 0 20px;
+        padding-bottom: 16px;
+        border-bottom: 2px solid var(--wine);
+      }
+
+      .cat-section-title h3 {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 600;
+        font-size: 28px;
+        color: var(--wine-deep);
+      }
+
+      .cat-section-title .count {
+        font-size: 13px;
+        color: var(--taupe);
+      }
+
+      .prod-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 1px 12px rgba(112, 18, 55, 0.08), 0 0 0 1px rgba(112, 18, 55, 0.1);
+      }
+
+      .prod-table tr {
+        border-bottom: 1px solid rgba(112, 18, 55, 0.08);
+      }
+
+      .prod-table tr:last-child {
+        border-bottom: none;
+      }
+
+      .prod-table td {
+        padding: 15px 16px;
+        font-size: 14.5px;
+        vertical-align: middle;
+      }
+
+      .prod-table tr:nth-child(even) td {
+        background: rgba(251, 247, 242, 0.6);
+      }
+
+      .prod-table tr:hover td {
+        background: var(--blush) !important;
+      }
+
+      .p-name {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      .p-brand {
+        color: var(--taupe);
+        font-style: italic;
+        font-size: 13.5px;
+        width: 140px;
+      }
+
+      .p-price {
+        text-align: right;
+        font-weight: 600;
+        color: var(--wine);
+        width: 110px;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 80px 20px;
+        color: var(--taupe);
+      }
+
+      .no-results svg {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto 16px;
+        color: var(--gold-deep);
+      }
+
+      .load-more-wrap {
+        text-align: center;
+        margin-top: 44px;
+      }
+
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--wine);
+        color: var(--wine);
+        padding: 14px 30px;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 2px;
+        background: transparent;
+        cursor: pointer;
+        letter-spacing: 0.02em;
+        transition: all .2s;
+      }
+
+      .btn-outline:hover {
+        background: var(--wine);
+        color: #fff;
+      }
+
+      /* ---------- testimonial / quote ---------- */
+      .quote-section {
+        background: var(--wine-deep);
+        color: #fff;
+        text-align: center;
+        padding: 120px 32px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .quote-lotus {
+        position: absolute;
+        width: 480px;
+        height: 480px;
+        opacity: 0.07;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .quote-mark {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 80px;
+        color: var(--gold);
+        line-height: 1;
+        margin-bottom: 8px;
+        opacity: 0.7;
+      }
+
+      .quote-text {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-weight: 500;
+        font-size: clamp(26px, 3.4vw, 40px);
+        max-width: 780px;
+        margin: 0 auto;
+        line-height: 1.4;
+        color: #fff;
+        position: relative;
+      }
+
+      .quote-attr {
+        margin-top: 28px;
+        font-size: 14px;
+        color: var(--gold);
+        letter-spacing: 0.04em;
+        position: relative;
+      }
+
+      /* ---------- contact / cta ---------- */
+      .cta-section {
+        background: var(--cream-deep);
+      }
+
+      .cta-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 0;
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .cta-left {
+        padding: 64px 56px;
+      }
+
+      .cta-left h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 500;
+        font-size: 36px;
+        color: var(--wine-deep);
+        margin-bottom: 18px;
+        line-height: 1.2;
+      }
+
+      .cta-left p {
+        color: var(--ink-soft);
+        font-size: 16px;
+        line-height: 1.75;
+        margin-bottom: 32px;
+        max-width: 440px;
+      }
+
+      .contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 15px;
+      }
+
+      .contact-item svg {
+        width: 19px;
+        height: 19px;
+        color: var(--wine);
+        flex-shrink: 0;
+      }
+
+      .contact-item a:hover {
+        color: var(--wine);
+      }
+
+      .cta-right {
+        background: linear-gradient(160deg, var(--wine) 0%, var(--wine-deep) 100%);
+        padding: 64px 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-right svg.bg-lotus {
+        position: absolute;
+        width: 340px;
+        height: 340px;
+        right: -80px;
+        bottom: -80px;
+        opacity: 0.1;
+        color: #fff;
+      }
+
+      .cta-right .tag {
+        font-size: 12.5px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 18px;
+        position: relative;
+      }
+
+      .cta-right h3 {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 28px;
+        color: #fff;
+        margin-bottom: 28px;
+        line-height: 1.4;
+        position: relative;
+      }
+
+      .cta-right .btn-white {
+        background: #fff;
+        color: var(--wine);
+        padding: 15px 28px;
+        border-radius: 2px;
+        font-size: 14px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        position: relative;
+        transition: transform .2s;
+      }
+
+      .cta-right .btn-white:hover {
+        transform: translateY(-1px);
+      }
+
+      /* ---------- footer ---------- */
+      footer {
+        background: var(--wine-deep);
+        color: rgba(255, 255, 255, 0.75);
+        padding: 64px 32px 32px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 60px;
+        padding-bottom: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 26px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+
+      .footer-brand svg {
+        width: 24px;
+        height: 24px;
+        color: var(--gold);
+      }
+
+      .footer-slogan {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        color: var(--gold);
+        font-size: 16px;
+      }
+
+      .footer-col h4 {
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 18px;
+        font-weight: 600;
+      }
+
+      .footer-col a {
+        display: block;
+        font-size: 14.5px;
+        margin-bottom: 12px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .footer-col a:hover {
+        color: #fff;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 28px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      /* ---------- scroll reveal ---------- */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity .7s ease, transform .7s ease;
+      }
+
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ---------- responsive ---------- */
+      @media (max-width:900px) {
+        .navlinks {
+          display: none;
+        }
+
+        .navlinks a {
+          width: 100%;
+        }
+
+        .navlinks .nav-cta {
+          text-align: center;
+        }
+
+        .burger {
+          display: block;
+        }
+
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+
+        .pillars {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .values-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .cta-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-right {
+          order: -1;
+        }
+
+        .hero {
+          padding: 150px 24px 90px;
+        }
+
+        .hero-carousel,
+        .hero-overlay {
+          display: block;
+        }
+
+        .wrap {
+          padding: 0 22px;
+        }
+
+        section {
+          padding: 76px 0;
+        }
+      }
+
+      @media (max-width:600px) {
+        .pillars {
+          grid-template-columns: 1fr;
+        }
+
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-stats {
+          gap: 34px;
+        }
+
+        .cat-controls {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .search-box {
+          max-width: none;
+        }
+
+        .p-brand {
+          display: none;
+        }
+
+        .cta-left {
+          padding: 40px 28px;
+        }
+
+        .cta-right {
+          padding: 40px 28px;
+        }
+      }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav">
+      <a href="#top" class="brand">
+        <img
+          src="logo-nakaty.png" alt="Nakaty Prime" style="width:70px;height:70px;object-fit:contain;">
+        Nakaty Prime
+      </a>
+      <div class="navlinks">
+        <a href="#sobre">Sobre</a>
+        <a href="#valores">Valores</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#contato" class="nav-cta">Fale conosco</a>
+      </div>
+      <button class="burger" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+
+      <div class="hero-carousel">
+        <div class="hero-slide active" style="background-image: url('4.png');"></div>
+
+        <div class="hero-slide" style="background-image: url('5.png');"></div>
+      </div>
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-inner">
+
+        <p class="eyebrow">Curadoria premium · Podologia profissional</p>
+
+        <h1 class="hero-title">
+          Escolhida por quem<br><em>entende</em> de cuidado.
+        </h1>
+        <p class="hero-sub">Insumos selecionados para podólogas, manicures e profissionais da saúde que não abrem
+          mão de procedência, agilidade e parceria de verdade.</p>
+        <div class="hero-actions">
+          <a href="#catalogo" class="btn-primary">
+            Ver catálogo completo
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+          <a href="#sobre" class="btn-ghost" style="color:#fff;border-color:rgba(225,178,108,0.7);">Conhecer a
+            Nakaty
+            Prime</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num" style="color:#fff;">297</div>
+            <div class="stat-label" style="color:rgba(255,255,255,0.75);">itens em catálogo</div>
+          </div>
+          <div>
+            <div class="stat-num" style="color:#fff;">10</div>
+            <div class="stat-label" style="color:rgba(255,255,255,0.75);">categorias especializadas</div>
+          </div>
+          <div>
+            <div class="stat-num" style="color:#fff;">100%</div>
+            <div class="stat-label" style="color:rgba(255,255,255,0.75);">procedência verificada</div>
+          </div>
+        </div>
+        <!-- Carousel dots -->
+        <div class="hero-dots">
+          <span class="hero-dot active"></span>
+          <span class="hero-dot"></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-lotus">
+      <span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3.5">
+        <path
+          d="M50 88 C50 88 50 50 50 50 M50 50 C36 50 24 38 24 22 C40 22 50 36 50 50 M50 50 C64 50 76 38 76 22 C60 22 50 36 50 50 M50 50 C34 58 18 54 12 40 C28 34 42 40 50 50 M50 50 C66 58 82 54 88 40 C72 34 58 40 50 50" />
+      </svg>
+      <span class="line"></span>
+    </div>
+
+    <section class="about" id="sobre">
+      <div class="wrap">
+        <div class="about-grid">
+          <div class="reveal about-visual">
+            <img
+              src="lotus-nakaty.png" alt="Flor de lótus Nakaty Prime" style="width:75%; height:75%; object-fit:contain;">
+          </div>
+          <div class="reveal about-copy">
+            <p class="lead">Sofisticada e humana ao mesmo tempo.</p>
+            <p>A Nakaty Prime é uma revendedora especializada em insumos de podologia, com curadoria premium para
+              profissionais da área da saúde. Nascemos para servir quem cuida dos pés de outras pessoas todos os dias —
+              e que merece trabalhar com produtos à altura desse cuidado.</p>
+            <p>Cada item do nosso catálogo passa por seleção criteriosa. Não vendemos apenas insumos: construímos
+              parceria com podólogas, manicures e especialistas que confiam na nossa procedência e na nossa agilidade.
+            </p>
+            <div class="pillars">
+              <div class="pillar">
+                <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M9 12l2 2 4-4" />
+                  <circle cx="12" cy="12" r="9" />
+                </svg>
+                <div class="pillar-name">Profissional</div>
+              </div>
+              <div class="pillar">
+                <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M12 3l7 4v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V7z" />
+                </svg>
+                <div class="pillar-name">Confiável</div>
+              </div>
+              <div class="pillar">
+                <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M8.5 13.5s1.5 2 3.5 2 3.5-2 3.5-2" />
+                  <circle cx="9" cy="10" r="0.6" fill="currentColor" />
+                  <circle cx="15" cy="10" r="0.6" fill="currentColor" />
+                </svg>
+                <div class="pillar-name">Feliz</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="values" id="valores">
+      <div class="wrap">
+        <div class="section-head reveal" style="max-width:600px;">
+          <p class="section-eyebrow" style="color:var(--gold);">O que nos guia</p>
+          <h2 class="section-title" style="color:#fff;">Cuidado em cada <em style="color:var(--gold);">detalhe</em></h2>
+        </div>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="num">01</div>
+          <h3>Procedência</h3>
+          <p>Fornecedores e marcas verificados, do instrumental às linhas de cuidado profissional.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="num">02</div>
+          <h3>Agilidade</h3>
+          <p>Reposição rápida para sua agenda não parar — porque sabemos o que é depender de prazo.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="num">03</div>
+          <h3>Parceria real</h3>
+          <p>Relacionamento próximo e humano, sem deixar de ser preciso e profissional.</p>
+        </div>
+        <div class="value-card reveal">
+          <div class="num">04</div>
+          <h3>Elegância</h3>
+          <p>Curadoria com critério estético e técnico — qualidade que se nota no resultado.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog" id="catalogo">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="section-eyebrow">Nosso portfólio</p>
+          <h2 class="section-title">Catálogo <em>completo</em> de produtos</h2>
+          <p class="section-desc">297 itens organizados por categoria, da bancada à esterilização. Busque pelo nome ou
+            navegue por categoria.</p>
+        </div>
+
+        <div class="cat-controls reveal">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="7" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" id="search" placeholder="Buscar produto ou marca...">
+          </div>
+          <div class="results-count" id="results-count">297 produtos</div>
+        </div>
+
+        <div class="cat-tabs reveal" id="cat-tabs"></div>
+
+        <div id="catalog-results"></div>
+
+        <div class="load-more-wrap" id="load-more-wrap" style="display:none;">
+          <button class="btn-outline" id="load-more">
+            Ver mais produtos
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-section">
+      <svg class="quote-lotus" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="1">
+        <path
+          d="M50 92 C50 92 50 50 50 50 M50 50 C30 50 14 34 14 12 C36 12 50 28 50 50 M50 50 C70 50 86 34 86 12 C64 12 50 28 50 50 M50 50 C28 60 8 54 -2 34 C20 28 40 36 50 50 M50 50 C72 60 92 54 102 34 C80 28 60 36 50 50" />
+      </svg>
+      <div class="quote-mark">&#8220;</div>
+      <p class="quote-text">Trabalhar com a Nakaty Prime é ter a tranquilidade de saber que cada produto que chega até
+        mim foi escolhido com o mesmo cuidado que eu ofereço aos meus pacientes.</p>
+      <p class="quote-attr">PODÓLOGA PARCEIRA NAKATY PRIME</p>
+    </section>
+
+    <section class="cta-section" id="contato">
+      <div class="wrap">
+        <div class="cta-grid reveal">
+          <div class="cta-left">
+            <h2>Vamos cuidar do seu consultório juntas?</h2>
+            <p>Fale com a gente para conhecer condições especiais, formas de pagamento e prazos de entrega para o seu
+              pedido.</p>
+            <div class="contact-list">
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path
+                    d="M3 5a2 2 0 0 1 2-2h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 5z" />
+                </svg>
+                <a href="https://wa.me/5515991593170" target="_blank" rel="noopener">WhatsApp — (15) 99159-3170</a>
+              </div>
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="M3 7l9 6 9-6" />
+                </svg>
+                <a href="mailto:nakatyprime@gmail.com">nakatyprime@gmail.com</a>
+              </div>
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <rect x="2" y="7" width="11" height="9" rx="1" />
+                  <path d="M13 10h4l3 3v3h-7z" />
+                  <circle cx="7" cy="18" r="2" />
+                  <circle cx="17" cy="18" r="2" />
+                </svg>
+                <span> Sorocaba - SP | Envios para todo Brasil </span>
+              </div>
+            </div>
+          </div>
+          <div class="cta-right">
+            <svg class="bg-lotus" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
+              <path
+                d="M50 92 C50 92 50 50 50 50 M50 50 C30 50 14 34 14 12 C36 12 50 28 50 50 M50 50 C70 50 86 34 86 12 C64 12 50 28 50 50" />
+            </svg>
+            <p class="tag">Instagram</p>
+            <h3>Siga-nos no Instagram e não perca nenhuma novidade!</h3>
+            <a href="https://www.instagram.com/nakatyprime/" class="btn-white" target="_blank">
+              @nakatyprime
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img
+            src="lotus-nakaty.png" alt="Nakaty Prime" style="width:52px;height:52px;object-fit:contain;">
+            Nakaty Prime
+          </div>
+          <p class="footer-slogan">Escolhida por quem entende de cuidado.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <a href="#sobre">Sobre nós</a>
+          <a href="#valores">Nossos valores</a>
+          <a href="#catalogo">Catálogo</a>
+          <a href="#contato">Contato</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <a href="https://wa.me/5515991593170" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:nakatyprime@gmail.com">E-mail</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Nakaty Prime. Todos os direitos reservados.</span>
+        <span>Revenda especializada em insumos de podologia</span>
+      </div>
+    </div>
+  </footer>
+
+  <script id="product-data"
+    type="application/json">[{"n":"Alicate Corte De Espicula","m":"Slim","p":59.9,"c":"Instrumentais e Alicates"},{"n":"Alicate Corte De Espicula","m":"Thimon","p":152.0,"c":"Instrumentais e Alicates"},{"n":"Alicate Corte Reto","m":"Fava","p":106.7,"c":"Instrumentais e Alicates"},{"n":"Alicate Corte Reto","m":"Slim","p":69.9,"c":"Instrumentais e Alicates"},{"n":"Alicate Corte Reto","m":"Thimon","p":148.0,"c":"Instrumentais e Alicates"},{"n":"Alicate Cuticula 777","m":"Mundial","p":39.9,"c":"Instrumentais e Alicates"},{"n":"Alicate Cuticula Cabo Curto 722","m":"Mundial","p":52.9,"c":"Instrumentais e Alicates"},{"n":"Alicate Cuticula Cabo Longo 772","m":"Mundial","p":59.9,"c":"Instrumentais e Alicates"},{"n":"Alicate De Corte De Espicula","m":"Fava","p":99.5,"c":"Instrumentais e Alicates"},{"n":"Alicate Orto 053","m":"Thimon","p":173.5,"c":"Instrumentais e Alicates"},{"n":"Alicate Orto 350","m":"Fava","p":119.9,"c":"Instrumentais e Alicates"},{"n":"Aplicador De Clip 246","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Aplicador De Clip 246","m":"Thimon","p":13.4,"c":"Instrumentais e Alicates"},{"n":"Aplicador De Elastico Elastik 247","m":"Slim","p":9.6,"c":"Instrumentais e Alicates"},{"n":"Aplicador De Elastico Elastik 247","m":"Thimon","p":13.5,"c":"Instrumentais e Alicates"},{"n":"Aplicador De Gaze","m":"Thimon","p":20.1,"c":"Instrumentais e Alicates"},{"n":"Cabo Bisturi N3","m":"Golgran","p":15.45,"c":"Instrumentais e Alicates"},{"n":"Cabo Bisturi N3","m":"Thimon","p":19.8,"c":"Instrumentais e Alicates"},{"n":"Cabo Bisturi N4","m":"Golgran","p":15.45,"c":"Instrumentais e Alicates"},{"n":"Cabo Bisturi N4","m":"Thimon","p":19.8,"c":"Instrumentais e Alicates"},{"n":"Cabo De Gubia","m":"Thimon","p":76.86,"c":"Instrumentais e Alicates"},{"n":"Calo Medio 483","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Calo Medio 483","m":"Thimon","p":13.9,"c":"Instrumentais e Alicates"},{"n":"Cinzel Formao 254","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Cinzel Formao 254","m":"Thimon","p":13.4,"c":"Instrumentais e Alicates"},{"n":"Cinzel Formao Modif. 254A","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Cinzel Formao Modif. 254A","m":"Thimon","p":13.4,"c":"Instrumentais e Alicates"},{"n":"Cinzel Micro Formao Modif 254C","m":"Thimon","p":13.4,"c":"Instrumentais e Alicates"},{"n":"Cureta Especial Pe Diabetico 262","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Cureta Especial Pe Diabetico 262","m":"Thimon","p":15.9,"c":"Instrumentais e Alicates"},{"n":"Cureta Simples 261A","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Cureta Simples Vazada 261C","m":"Slim","p":9.6,"c":"Instrumentais e Alicates"},{"n":"Enucleadora I P","m":"Brilho","p":18.5,"c":"Instrumentais e Alicates"},{"n":"Enucleadora II M","m":"Brilho","p":18.5,"c":"Instrumentais e Alicates"},{"n":"Enucleadora III G","m":"Brilho","p":18.5,"c":"Instrumentais e Alicates"},{"n":"Espatula 260","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Espatula 260","m":"Thimon","p":13.5,"c":"Instrumentais e Alicates"},{"n":"Espatula Interdigital 264","m":"Thimon","p":13.9,"c":"Instrumentais e Alicates"},{"n":"Espatula P/Mistura","m":"STC","p":2.5,"c":"Instrumentais e Alicates"},{"n":"Espatula Tipo Calosidade 222","m":"Slim","p":9.6,"c":"Instrumentais e Alicates"},{"n":"Espatula Tipo Calosidade 222","m":"Thimon","p":13.4,"c":"Instrumentais e Alicates"},{"n":"Estilete 245","m":"Slim","p":9.6,"c":"Instrumentais e Alicates"},{"n":"Estilete Duplo 245A","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Estilete Duplo 245A","m":"Thimon","p":13.4,"c":"Instrumentais e Alicates"},{"n":"Goiva 206","m":"Thimon","p":13.4,"c":"Instrumentais e Alicates"},{"n":"Goiva 207","m":"Thimon","p":13.4,"c":"Instrumentais e Alicates"},{"n":"Golfinho 220","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Lamina De Bisturi N15","m":"Biomass","p":42.6,"c":"Instrumentais e Alicates"},{"n":"Lamina De Bisturi N20","m":"Biomass","p":42.6,"c":"Instrumentais e Alicates"},{"n":"Lamina De Bisturi N22","m":"Biomass","p":42.6,"c":"Instrumentais e Alicates"},{"n":"Micro Nuclear 208","m":"Fava","p":12.9,"c":"Instrumentais e Alicates"},{"n":"Micro Nuclear 208","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Micro Nuclear 208","m":"Thimon","p":13.4,"c":"Instrumentais e Alicates"},{"n":"Nano Nuclear 205","m":"Thimon","p":13.5,"c":"Instrumentais e Alicates"},{"n":"Nuclear Estreito 209","m":"Fava","p":12.9,"c":"Instrumentais e Alicates"},{"n":"Nuclear Estreito 209","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Nuclear Largo 214","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Nuclear Largo 214","m":"Thimon","p":13.4,"c":"Instrumentais e Alicates"},{"n":"PAPP Pasta Afastadora De Pregas","m":null,"p":24.9,"c":"Instrumentais e Alicates"},{"n":"Palito Para Limpar Esmalte 324","m":"Thimon","p":13.5,"c":"Instrumentais e Alicates"},{"n":"Pinca Allis 15cm","m":"Fava","p":86.7,"c":"Instrumentais e Alicates"},{"n":"Pinca Allis 15cm","m":"Golgran","p":59.9,"c":"Instrumentais e Alicates"},{"n":"Pinca Allis 15cm","m":"Thimon","p":65.99,"c":"Instrumentais e Alicates"},{"n":"Pinca Anatomica 14cm","m":"Slim","p":12.9,"c":"Instrumentais e Alicates"},{"n":"Pinca Anatomica 14cm","m":"Thimon","p":15.2,"c":"Instrumentais e Alicates"},{"n":"Pinca Clinica","m":"Slim","p":12.9,"c":"Instrumentais e Alicates"},{"n":"Pinca Clinica","m":"Thimon","p":15.7,"c":"Instrumentais e Alicates"},{"n":"Pinca Kelly 14cm Reta","m":"ABC","p":52.1,"c":"Instrumentais e Alicates"},{"n":"Pinca Mosquito Reta 12cm","m":"Thimon","p":42.6,"c":"Instrumentais e Alicates"},{"n":"Pinca Trancada Colagem De Brackets","m":"Slim","p":22.6,"c":"Instrumentais e Alicates"},{"n":"Pinca Trancada Colagem De Brackets","m":"Thimon","p":23.05,"c":"Instrumentais e Alicates"},{"n":"Ponteiro 472","m":"Slim","p":9.2,"c":"Instrumentais e Alicates"},{"n":"Ponteiro 472","m":"Thimon","p":13.9,"c":"Instrumentais e Alicates"},{"n":"Porta Agulha Castroviejo Chato 14cm","m":"Thimon","p":274.5,"c":"Instrumentais e Alicates"},{"n":"Porta Agulha Mathieu 14cm","m":"Thimon","p":66.55,"c":"Instrumentais e Alicates"},{"n":"Tesoura Iris Reta 11,5cm","m":"Golgran","p":29.9,"c":"Instrumentais e Alicates"},{"n":"Tesoura Iris Reta 12cm","m":"Thimon","p":38.6,"c":"Instrumentais e Alicates"},{"n":"Tesoura Metzenbaun Reta 15cm","m":"Fava","p":74.5,"c":"Instrumentais e Alicates"},{"n":"Tesoura Romba Romba 15cm Reta","m":"Golgran","p":39.9,"c":"Instrumentais e Alicates"},{"n":"Broca Ceramica 1503C","m":"Brilho","p":34.6,"c":"Brocas e Micromotores"},{"n":"Broca Ceramica 1508CF","m":"Brilho","p":34.6,"c":"Brocas e Micromotores"},{"n":"Broca Ceramica 1509CF","m":"Brilho","p":34.6,"c":"Brocas e Micromotores"},{"n":"Broca Ceramica 95C","m":"Brilho","p":34.6,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 001PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 003PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 006PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 007PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 019PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 021PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 033PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 035PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 038PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 042PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 056PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 057PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 061PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 082PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 085PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 092PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 095PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 700PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 703PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 707PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 708PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 710PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 715PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 716PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 717PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 718PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 720PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 721PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 730PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 740PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Diamantada 744PM","m":"Brilho","p":9.99,"c":"Brocas e Micromotores"},{"n":"Broca Tungstenio 095","m":"Brilho","p":59.9,"c":"Brocas e Micromotores"},{"n":"Broca Tungstenio 1503F","m":"Brilho","p":59.9,"c":"Brocas e Micromotores"},{"n":"Broca Tungstenio 1508","m":"Brilho","p":59.9,"c":"Brocas e Micromotores"},{"n":"Broca Tungstenio 1508F","m":"Brilho","p":59.9,"c":"Brocas e Micromotores"},{"n":"Kit Afiacao P/Micromotor","m":"Brilho","p":24.5,"c":"Brocas e Micromotores"},{"n":"Kit Afiacao P/Micromotor","m":"Thimon","p":36.05,"c":"Brocas e Micromotores"},{"n":"Mandril PM","m":"Brilho","p":9.5,"c":"Brocas e Micromotores"},{"n":"Mandril PM Reforcado","m":"Brilho","p":9.5,"c":"Brocas e Micromotores"},{"n":"Micro Motor LB50","m":"Beltec","p":390.0,"c":"Brocas e Micromotores"},{"n":"Micromotor LB100","m":"Beltec","p":699.9,"c":"Brocas e Micromotores"},{"n":"Apoio Lixa Laminar Silicone","m":"Brilho","p":19.5,"c":"Lixas e Acessórios"},{"n":"Apoio Lixa Plantar Rigido","m":"Brilho","p":12.9,"c":"Lixas e Acessórios"},{"n":"Apoio Lixa Plantar Silicone","m":"Brilho","p":19.5,"c":"Lixas e Acessórios"},{"n":"Fibra Memoria Molecular FMM 18","m":"Brilho","p":14.0,"c":"Lixas e Acessórios"},{"n":"Fibra Memoria Molecular FMM 18","m":"Thimon","p":14.0,"c":"Lixas e Acessórios"},{"n":"Fibra Memoria Molecular FMM 20","m":"Brilho","p":25.9,"c":"Lixas e Acessórios"},{"n":"Fibra Memoria Molecular FMM 22","m":"Thimon","p":14.0,"c":"Lixas e Acessórios"},{"n":"Fibra Memoria Molecular FMM 25","m":"Brilho","p":25.9,"c":"Lixas e Acessórios"},{"n":"Fibra Memoria Molecular FMM 30","m":"Brilho","p":14.0,"c":"Lixas e Acessórios"},{"n":"Fibra Memoria Molecular FMM 30","m":"Thimon","p":25.9,"c":"Lixas e Acessórios"},{"n":"Kit De Lixas Plantares Laminares E Suportes","m":"PodoSystem","p":316.0,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar Gr. 100","m":"Norton","p":9.5,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar Gr. 120","m":"Norton","p":9.5,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar Gr. 150","m":"Norton","p":9.5,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar Gr. 180","m":"Norton","p":9.5,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar Gr. 220","m":"Norton","p":9.5,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar Gr. 400","m":"Norton","p":9.5,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar LC 100","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar LC 120","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar LC 150","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar LC 180","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar LC 220","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar LC 320","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Lixa Laminar LC 400","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Lixa Plantar Gr. 100","m":"Norton","p":12.5,"c":"Lixas e Acessórios"},{"n":"Lixa Plantar Gr. 120","m":"Norton","p":12.5,"c":"Lixas e Acessórios"},{"n":"Lixa Plantar Gr. 150","m":"Norton","p":12.5,"c":"Lixas e Acessórios"},{"n":"Lixa Plantar Gr. 180","m":"Norton","p":12.5,"c":"Lixas e Acessórios"},{"n":"Lixa Plantar Gr. 220","m":"Norton","p":12.5,"c":"Lixas e Acessórios"},{"n":"Lixa Plantar Gr. 80","m":"Norton","p":12.5,"c":"Lixas e Acessórios"},{"n":"Lixa Plantar PC 100","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Lixa Plantar PC 120","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Lixa Plantar PC 150","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Lixa Plantar PC 180","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Lixa Plantar PC 220","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Lixa Plantar PC 80","m":"PodoSystem","p":22.8,"c":"Lixas e Acessórios"},{"n":"Mini Kit Plantar","m":"PodoSystem","p":128.5,"c":"Lixas e Acessórios"},{"n":"Suporte Lixa Laminar","m":"PodoSystem","p":24.8,"c":"Lixas e Acessórios"},{"n":"Suporte Lixa Plantar","m":"PodoSystem","p":24.8,"c":"Lixas e Acessórios"},{"n":"Agua Destilada 5L","m":"Asfer","p":20.65,"c":"Bandejas e Acessórios de Bancada"},{"n":"Bandeja De Residuos 49x33cm","m":"Fava","p":179.9,"c":"Bandejas e Acessórios de Bancada"},{"n":"Bandeja Mileniun 22x09x1,5cm","m":"Fava","p":34.9,"c":"Bandejas e Acessórios de Bancada"},{"n":"Bandeja Mileniun 22x12x1,5cm","m":"Fava","p":46.0,"c":"Bandejas e Acessórios de Bancada"},{"n":"Bandeja Plastica Azul 20x10x02cm","m":"Fava","p":12.9,"c":"Bandejas e Acessórios de Bancada"},{"n":"Bandeja Plastica Pink 20x10x02cm","m":"Fava","p":12.9,"c":"Bandejas e Acessórios de Bancada"},{"n":"Bandeja Plastica Pink 22,5x15x02cm","m":"Fava","p":30.2,"c":"Bandejas e Acessórios de Bancada"},{"n":"Bandeja Plastica Verde 20x10x02cm","m":"Fava","p":12.9,"c":"Bandejas e Acessórios de Bancada"},{"n":"Bico Dosador Para Oleos Essenciais","m":"RHR","p":2.9,"c":"Bandejas e Acessórios de Bancada"},{"n":"Coletor Perfuro 3L","m":"Descarbox MDH","p":6.2,"c":"Bandejas e Acessórios de Bancada"},{"n":"Cubeta 09x4,5cm 240ml Millenium","m":"Fava","p":18.0,"c":"Bandejas e Acessórios de Bancada"},{"n":"Cubeta Media De Silicone","m":"STC","p":6.5,"c":"Bandejas e Acessórios de Bancada"},{"n":"Diapasao Medico 128Hz","m":"BIC","p":122.9,"c":"Bandejas e Acessórios de Bancada"},{"n":"Dosador Mod. Veneza 190ml","m":"STC","p":12.5,"c":"Bandejas e Acessórios de Bancada"},{"n":"Estojo Redondo","m":"Fava","p":77.25,"c":"Bandejas e Acessórios de Bancada"},{"n":"Monofilamento Estesiometro 10g Individual","m":"Sorri Bauru","p":69.0,"c":"Bandejas e Acessórios de Bancada"},{"n":"Paquimetro Plastico 06cm","m":"STC","p":6.0,"c":"Bandejas e Acessórios de Bancada"},{"n":"Pote Dappen Em Vidro Transparente","m":null,"p":6.0,"c":"Bandejas e Acessórios de Bancada"},{"n":"Suporte Coletor Perfuro 3L","m":"MDH","p":44.15,"c":"Bandejas e Acessórios de Bancada"},{"n":"Algodao Hidrofilo Rolo 500g","m":"Nathy MDH","p":25.85,"c":"Curativos e Materiais de Consumo"},{"n":"Bandagem Elastica 2,5cm x 4,5m Bege","m":"TCM","p":6.9,"c":"Curativos e Materiais de Consumo"},{"n":"Compressa Gaze 9 Fios C/500un","m":"Nobre MDH","p":39.8,"c":"Curativos e Materiais de Consumo"},{"n":"Curativo Fibra De Alginato 10x10cm","m":"VitaMedical","p":18.5,"c":"Curativos e Materiais de Consumo"},{"n":"Curativo Fibra De Alginato 5x5cm","m":"Casex","p":12.4,"c":"Curativos e Materiais de Consumo"},{"n":"Filme De PVC 12cm x 100m","m":"G-Util","p":23.1,"c":"Curativos e Materiais de Consumo"},{"n":"Fita Esparadrapo 25mmx4,5m","m":"Missner","p":7.5,"c":"Curativos e Materiais de Consumo"},{"n":"Fita Kinesio 5cm x 5m Bege","m":"Aktive Tape Sport","p":39.9,"c":"Curativos e Materiais de Consumo"},{"n":"Fita Micropore 12mmx10m","m":"Missner","p":4.55,"c":"Curativos e Materiais de Consumo"},{"n":"Fita Micropore 12mmx10m Medfix","m":"JM","p":2.9,"c":"Curativos e Materiais de Consumo"},{"n":"Fita Micropore 25mmx10m","m":"Missner","p":7.5,"c":"Curativos e Materiais de Consumo"},{"n":"Gaze Tubular 1,6cm x 20m","m":"Santric","p":13.6,"c":"Curativos e Materiais de Consumo"},{"n":"Lencol Descartavel 50cm x 50m Tipo I","m":"Clean MDH","p":9.99,"c":"Curativos e Materiais de Consumo"},{"n":"Porta Algodao Limpo Com Mola 08x10cm","m":"Fava","p":78.6,"c":"Curativos e Materiais de Consumo"},{"n":"Bobina Esterilizacao 10x100m","m":"Hospflex","p":67.9,"c":"Esterilização e Biossegurança"},{"n":"Bobina Esterilizacao 5x100m","m":"Hospflex","p":34.5,"c":"Esterilização e Biossegurança"},{"n":"Bobina Esterilizacao 5x50m","m":"Hospflex","p":19.9,"c":"Esterilização e Biossegurança"},{"n":"Cimento Cirurgico Em Po","m":"Lysanda","p":31.5,"c":"Esterilização e Biossegurança"},{"n":"Envelope Auto Selante 6x13cm 100un","m":"Hospflex","p":16.9,"c":"Esterilização e Biossegurança"},{"n":"Envelope Auto Selante 9x23cm 100un","m":"Hospflex","p":26.9,"c":"Esterilização e Biossegurança"},{"n":"Envelope Auto Selante 9x23cm 200un","m":"Hospflex","p":46.9,"c":"Esterilização e Biossegurança"},{"n":"Fita Para Autoclave 19mm x 30m","m":"Hospflex","p":0.0,"c":"Esterilização e Biossegurança"},{"n":"Indicador Biologico 24H","m":"2i MDH","p":42.2,"c":"Esterilização e Biossegurança"},{"n":"Bota Metalizada Com Isolmanta","m":"STC","p":14.9,"c":"EPIs e Descartáveis"},{"n":"Botinha Plastica Descartavel 100un","m":"STC","p":16.8,"c":"EPIs e Descartáveis"},{"n":"Dedeira Latex Tam. Unico C/50un","m":"STC","p":13.9,"c":"EPIs e Descartáveis"},{"n":"Luvas Latex PP C/100","m":"Descarpack","p":42.9,"c":"EPIs e Descartáveis"},{"n":"Luvas Nitrilica Sonic M","m":"SuperMax","p":34.9,"c":"EPIs e Descartáveis"},{"n":"Mascara Cirurgica Tripla Camada Branca","m":"Medix MDH","p":15.85,"c":"EPIs e Descartáveis"},{"n":"Oculos De Protecao","m":"MDH","p":9.99,"c":"EPIs e Descartáveis"},{"n":"Touca Cirurgica Branca 100un","m":"MDH","p":15.9,"c":"EPIs e Descartáveis"},{"n":"Agesani Age 100ml","m":"MDH","p":25.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Blend Alivio E Emoliencia 15ml","m":"Nobrevie","p":49.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Blend Reparacao E Renovacao 15ml","m":"Nobrevie","p":49.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Clean Express 500ml","m":"Super Pe","p":56.5,"c":"Óleos e Cosméticos Profissionais"},{"n":"Deo Feet 120ml","m":"Pro Essence","p":45.5,"c":"Óleos e Cosméticos Profissionais"},{"n":"Emolient Concentrado 120ml","m":"Pro Unha","p":47.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Emolient Pronto 500ml","m":"Pro Unha","p":45.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Emoliente Concentrado 120ml","m":"RHR","p":58.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Emoliente Pronto 500ml","m":"RHR","p":49.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Esfoliaderm 120g","m":"Pro Unha","p":49.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Feet Armour 250g","m":"Super Pe","p":62.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Gel Removedor De Cuticula 50ml","m":"Super Pe","p":29.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Gran Blend 10ml","m":"RHR","p":49.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"HemoLien 20ml","m":"Nobrevie","p":34.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Higienizante Concentrado 120ml","m":"RHR","p":58.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Higienizante Pronto 500ml","m":"RHR","p":53.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Higimag 500ml","m":"Nobrevie","p":55.5,"c":"Óleos e Cosméticos Profissionais"},{"n":"HomeoClean 250ml","m":"Nobrevie","p":43.5,"c":"Óleos e Cosméticos Profissionais"},{"n":"HomeoCreme 120g","m":"Nobrevie","p":43.5,"c":"Óleos e Cosméticos Profissionais"},{"n":"HomeoFree 30ml","m":"Nobrevie","p":49.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"HomeoMag 30g","m":"Nobrevie","p":52.5,"c":"Óleos e Cosméticos Profissionais"},{"n":"Hydra M 40ml","m":"Pro Unha","p":69.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Hydraderm 120g","m":"Pro Unha","p":42.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Keraderm 120g","m":"Pro Unha","p":69.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Keraderm 300g","m":"Pro Unha","p":99.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Kerafeet 300ml","m":"Pro Unha","p":99.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Micotin 10ml","m":"RHR","p":28.2,"c":"Óleos e Cosméticos Profissionais"},{"n":"Mix Parafina 200ml","m":"Bellas","p":28.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Mousse Parafina 250g","m":"Bellas","p":28.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Nutriderm Esfoliante 100g","m":"RHR","p":46.2,"c":"Óleos e Cosméticos Profissionais"},{"n":"Nutriderm Esfoliante 500g","m":"RHR","p":130.2,"c":"Óleos e Cosméticos Profissionais"},{"n":"Nutriderm Hidratante 100g","m":"RHR","p":47.5,"c":"Óleos e Cosméticos Profissionais"},{"n":"Nutriderm Hidratante 500g","m":"RHR","p":128.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo De Abacate Ozonizado 10ml","m":"Pro Unha","p":42.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo De Girassol Ozonizado 10ml","m":"Pro Unha","p":20.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo De Girassol Ozonizado 30ml","m":"Oleozon","p":40.5,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo De Girassol Ozonizado 30ml","m":"RHR","p":32.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo De Melaleuca 10ml","m":"Pro Unha","p":35.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo Essencial Copaiba 10ml","m":"RHR","p":35.3,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo Essencial Cravo 10ml","m":"Pro Unha","p":27.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo Essencial De Tuia Cedro Maca 5ml","m":"RHR","p":58.8,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo Essencial Hortela Pimenta 10ml","m":"RHR","p":44.8,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo Essencial Lavanda 10ml","m":"Pro Unha","p":54.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo Essencial Lemongrass 10ml","m":"RHR","p":36.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo Essencial Ylang Ylang 5ml","m":"RHR","p":54.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo Fortalecedor 15ml","m":"Bellas","p":14.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo Vegetal De Girassol 100ml","m":"RHR","p":23.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo Vegetal Girassol 100ml","m":"RHR","p":24.8,"c":"Óleos e Cosméticos Profissionais"},{"n":"Oleo Vegetal Semente De Uva 100ml","m":"RHR","p":36.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Onico Blend 30ml","m":"RHR","p":53.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Onico Blend Conta Gotas 10ml","m":"RHR","p":27.8,"c":"Óleos e Cosméticos Profissionais"},{"n":"Peeling De Cristal 200ml","m":"Bellas","p":28.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Podoneem Creme 60g","m":"Pro Essence","p":56.2,"c":"Óleos e Cosméticos Profissionais"},{"n":"Podoneem Oleo 10ml","m":"Pro Essence","p":56.2,"c":"Óleos e Cosméticos Profissionais"},{"n":"Podoneem Oregon 10ml","m":"Pro Essence","p":34.2,"c":"Óleos e Cosméticos Profissionais"},{"n":"Pro Gel 25ml","m":"Pro Unha","p":47.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Pro Paste 45g","m":"Pro Unha","p":45.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Pro Unha Nail Care 9ml","m":"Pro Unha","p":32.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Pro Unha Sept 500ml","m":"Pro Unha","p":67.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Pro Unha Sept 5L","m":"Pro Unha","p":399.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Pro Unha Silver 60ml","m":"Pro Unha","p":59.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"ProGel O3","m":"Pro Unha","p":59.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Rap 10 100ml","m":"Pro Essence","p":44.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Refil Shake Emoliente 500ml","m":"Bellas","p":19.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Remove 220ml","m":"Super Pe","p":44.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Remove Plus+ 1L","m":"Super Pe","p":159.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Scrub 220ml","m":"Super Pe","p":52.5,"c":"Óleos e Cosméticos Profissionais"},{"n":"Shake Emoliente 1L","m":"Bellas","p":38.9,"c":"Óleos e Cosméticos Profissionais"},{"n":"Tea Tree Cream 30g","m":"Pro Unha","p":56.0,"c":"Óleos e Cosméticos Profissionais"},{"n":"Botao Lingual Composite","m":"Morelli","p":19.9,"c":"Materiais Odontológicos/Ortodônticos"},{"n":"Botao Lingual Metalico","m":"OrthoMundi","p":15.5,"c":"Materiais Odontológicos/Ortodônticos"},{"n":"Elastico Corrente Curto Transparente","m":"OrthoMundi","p":18.3,"c":"Materiais Odontológicos/Ortodônticos"},{"n":"Fio Ortondontico Redondo .012 0,30mm 50g","m":"Dental Morelli","p":24.75,"c":"Materiais Odontológicos/Ortodônticos"},{"n":"Fio Ortondontico Redondo .014 0,35mm 50g","m":"Dental Morelli","p":24.75,"c":"Materiais Odontológicos/Ortodônticos"},{"n":"Fio Ortondontico Redondo .016 0,40mm 50g","m":"Dental Morelli","p":24.75,"c":"Materiais Odontológicos/Ortodônticos"},{"n":"Azul De Metileno Chimiolux 1ml","m":"DMC Cx. 10 Seringas","p":226.0,"c":"Acessórios e Manutenção"},{"n":"Cola Super Bonder 3g","m":null,"p":8.9,"c":"Acessórios e Manutenção"},{"n":"Escova Para Lavagem De Instrumentos","m":"STC","p":7.85,"c":"Acessórios e Manutenção"},{"n":"Filtro Exaustor Luminaria Led","m":"Ramsor","p":32.0,"c":"Acessórios e Manutenção"},{"n":"Marcador De Instrumentos Azul","m":"Lysanda","p":19.9,"c":"Acessórios e Manutenção"},{"n":"Marcador De Instrumentos Colorido","m":"Lysanda","p":19.9,"c":"Acessórios e Manutenção"},{"n":"Marcador De Instrumentos Pink","m":"Lysanda","p":19.9,"c":"Acessórios e Manutenção"},{"n":"Marcador De Instrumentos Vermelho","m":"Lysanda","p":19.9,"c":"Acessórios e Manutenção"},{"n":"Pedra Para Afiar Instrumentais 320","m":"Thimon","p":43.9,"c":"Acessórios e Manutenção"}]</script>
+  <script>
+    const products = JSON.parse(document.getElementById('product-data').textContent);
+
+    const catOrder = ['Instrumentais e Alicates', 'Brocas e Micromotores', 'Lixas e Acessórios', 'Bandejas e Acessórios de Bancada', 'Curativos e Materiais de Consumo', 'Esterilização e Biossegurança', 'EPIs e Descartáveis', 'Óleos e Cosméticos Profissionais', 'Materiais Odontológicos/Ortodônticos', 'Acessórios e Manutenção'];
+
+    const counts = {};
+    products.forEach(p => counts[p.c] = (counts[p.c] || 0) + 1);
+
+    const tabsEl = document.getElementById('cat-tabs');
+    let activeCat = 'all';
+    let visibleLimit = 60;
+
+    function fmt(v) {
+      return 'R$\u00A0' + v.toFixed(2).replace('.', ',');
+    }
+
+    function renderTabs() {
+      let html = `<button class="tab active" data-cat="all">Todas as categorias <span style="opacity:.6">(${products.length})</span></button>`;
+      catOrder.forEach(c => {
+        if (counts[c]) html += `<button class="tab" data-cat="${c}">${c} <span style="opacity:.6">(${counts[c]})</span></button>`;
+      });
+      tabsEl.innerHTML = html;
+      tabsEl.querySelectorAll('.tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeCat = btn.dataset.cat;
+          visibleLimit = 60;
+          tabsEl.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render();
+        });
+      });
+    }
+
+    function render() {
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      let filtered = products.filter(p => {
+        const matchesCat = activeCat === 'all' || p.c === activeCat;
+        const matchesQ = !q || p.n.toLowerCase().includes(q) || (p.m && p.m.toLowerCase().includes(q));
+        return matchesCat && matchesQ;
+      });
+
+      document.getElementById('results-count').textContent = filtered.length + (filtered.length === 1 ? ' produto' : ' produtos');
+
+      const resultsEl = document.getElementById('catalog-results');
+      const loadMoreWrap = document.getElementById('load-more-wrap');
+
+      if (filtered.length === 0) {
+        resultsEl.innerHTML = `<div class="no-results">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <p>Nenhum produto encontrado para essa busca.</p>
+    </div>`;
+        loadMoreWrap.style.display = 'none';
+        return;
+      }
+
+      const shown = filtered.slice(0, visibleLimit);
+      const hasMore = filtered.length > visibleLimit;
+
+      if (activeCat === 'all' && !q) {
+        let html = '';
+        catOrder.forEach(cat => {
+          const items = shown.filter(p => p.c === cat);
+          if (items.length === 0) return;
+          html += `<div class="cat-section reveal in">
+        <div class="cat-section-title"><h3>${cat}</h3><span class="count">${counts[cat]} itens</span></div>
+        <table class="prod-table"><tbody>`;
+          items.forEach(p => {
+            html += `<tr><td class="p-name">${p.n}</td><td class="p-brand">${p.m || '\u2014'}</td><td class="p-price">${fmt(p.p)}</td></tr>`;
+          });
+          html += `</tbody></table></div>`;
+        });
+        resultsEl.innerHTML = html;
+      } else {
+        let html = `<div class="cat-section reveal in"><table class="prod-table"><tbody>`;
+        shown.forEach(p => {
+          html += `<tr><td class="p-name">${p.n}</td><td class="p-brand">${p.m || '\u2014'}</td><td class="p-price">${fmt(p.p)}</td></tr>`;
+        });
+        html += `</tbody></table></div>`;
+        resultsEl.innerHTML = html;
+      }
+
+      loadMoreWrap.style.display = hasMore ? 'block' : 'none';
+    }
+
+    document.getElementById('search').addEventListener('input', () => { visibleLimit = 60; render(); });
+    document.getElementById('load-more').addEventListener('click', () => { visibleLimit += 60; render(); });
+
+    renderTabs();
+    render();
+
+
+    // Hero carousel
+    (function () {
+      const slides = document.querySelectorAll('.hero-slide');
+      const dots = document.querySelectorAll('.hero-dot');
+      let current = 0;
+
+      function goTo(n) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = n % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      dots.forEach((dot, i) => dot.addEventListener('click', () => {
+        clearInterval(timer);
+        goTo(i);
+        timer = setInterval(() => goTo(current + 1), 4000);
+      }));
+
+      let timer = setInterval(() => goTo(current + 1), 4000);
+    })();
+
+    const burger = document.querySelector('.burger');
+    const navlinks = document.querySelector('.navlinks');
+    burger.addEventListener('click', () => {
+      const isOpen = navlinks.style.display === 'flex';
+      navlinks.style.cssText = isOpen ? '' : 'display:flex;position:fixed;top:64px;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--cream);padding:24px 32px;border-bottom:1px solid var(--line);gap:20px;';
+    });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+</body>
+
+</html>
